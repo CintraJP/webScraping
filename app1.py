@@ -48,20 +48,8 @@ def scraping_cars(marca: str):
     
     
     df = pd.DataFrame(dataFrame)
-    return 
+    return df
     
-    
-            
-            
-
-        
-
-
-
-    
-    
-
-  
 print(scraping_cars('bugatti'))
 
 
