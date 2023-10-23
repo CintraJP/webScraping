@@ -1,6 +1,16 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+ 
+ 
+texto_carro = []
+modelo = []
+imagem = []
+informacoes = []
+marcaCarro = []
+
+url_post = 'http://127.0.0.1:8000/app/cars/'
+
 
 def scraping_cars(marca: str):
     cars_url = f'https://www.autoevolution.com/{marca}'
@@ -11,10 +21,6 @@ def scraping_cars(marca: str):
     marcador = soup.find_all('div', class_ = 'col2width bcol-white fl')
 
     nome_carros = [i.find('a').get('href') for i in marcador] 
-    texto_carro = []
-    modelo = []
-    imagem = []
-    informacoes = []
     for i in range (len(nome_carros)):
         url_especifica = nome_carros[i]
         page_especifica = requests.get(url_especifica, headers = browsers)
@@ -39,18 +45,33 @@ def scraping_cars(marca: str):
             modelo.insert(x, loc_modelo[x].text)
             imagem.insert(x, loc_imagem[x])
             informacoes.insert(x, loc_infos.text)
-    
-    dataFrame = {'Modelo': modelo,
-                'Texto': texto_carro,
-                'Informações': informacoes,
-                'Imagem': imagem}
+            marcaCarro.insert(x, marca)
     
     
-    
-    df = pd.DataFrame(dataFrame)
-    return df
-    
-print(scraping_cars('bugatti'))
+    for i in range(len(marcaCarro)):
+        data = {
+        "brand": f'{marcaCarro[i]}',
+        "model": f'{modelo[i]}',
+        "info": f'{informacoes[i]}',
+        "text": f'{texto_carro[i]}',
+        "img": f'{imagem[i]}'
+        }
+        r = requests.post(url_post, data = data)
+        print(r)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
