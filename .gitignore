@@ -20,7 +20,7 @@ postgres-data
 # Deploy
 Procfile
 runtime.txt
-db.sqlite3
+
 
 # Config file
 config.py
