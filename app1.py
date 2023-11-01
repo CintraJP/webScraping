@@ -60,7 +60,7 @@ def scraping_cars(marca: str):
         print(r)
 
 
-
+print('oi')
 
 
 

@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'autocars.wsgi.application'
 #    }
 #}
 DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    "default": dj_database_url.parse('postgres://testapi_ptdo_user:M8GzuCgLxBbPimhevqbhQ4jn19kn6cEM@dpg-ckrug505vl2c73bnp8i0-a.oregon-postgres.render.com/testapi_ptdo')
 }
 
 # Password validation
